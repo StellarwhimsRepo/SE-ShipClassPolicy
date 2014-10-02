@@ -509,7 +509,7 @@
     Write-Host -ForegroundColor Green "Utility Class Detected: "$utilitycount
     Write-Host -ForegroundColor Green "Multi-Role Class Detected: "$Multirolecount
 
-    #$myXML.Save($filePath)
+    $myXML.Save($filePath)
     Write-Host "Press any key to continue ..."
 
     $x = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
