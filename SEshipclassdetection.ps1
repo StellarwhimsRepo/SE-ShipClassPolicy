@@ -51,8 +51,8 @@
     $nodes = $myXML.SelectNodes("//SectorObjects/MyObjectBuilder_EntityBase[IsStatic='false' and GridSizeEnum='Large' and (@xsi:type='MyObjectBuilder_CubeGrid')]"  , $ns)
     
     ForEach($node in $nodes){
-        $turretcount = $node.SelectNodes("CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_LargeGatlingTurret')] | MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_LargeMissileTurret')] | MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_SmallMissileLauncher')] | MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_SmallMissileLauncherReload')]", $ns)
-        $shiptoolscount = $node.SelectNodes("CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_ShipWelder')] | MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_ShipGrinder')] | MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_Drill')]", $ns)
+        $turretcount = $node.SelectNodes("CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_LargeGatlingTurret')] | CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_LargeMissileTurret')] | CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_SmallMissileLauncher')] | CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_SmallMissileLauncherReload')]", $ns)
+        $shiptoolscount = $node.SelectNodes("CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_ShipWelder')] | CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_ShipGrinder')] | CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_Drill')]", $ns)
             #utility
             IF($turretcount.count -eq 0 -and $shiptoolscount.count -gt 0){
                 Write-Host -ForegroundColor Green "Utility Class Detected!!"
@@ -77,7 +77,7 @@
                     IF( $shiptoolscount.count -gt $LARGEUTOOL){
                       $total=$shiptoolscount.count - $LARGEUTOOL
                       do{
-                          $shiptoolscount = $node.SelectNodes("CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_ShipWelder')] | MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_ShipGrinder')] | MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_Drill')]", $ns)
+                          $shiptoolscount = $node.SelectNodes("CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_ShipWelder')] | CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_ShipGrinder')] | CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_Drill')]", $ns)
                           $deletethis=$shiptoolscount | Get-Random
                           $deletethis.ParentNode.Removechild($deletethis)
                           $total=$total - 1
@@ -89,11 +89,11 @@
 
                 #production section ==================
                   #production
-                $production=$node.SelectNodes("CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_Refinery')] | MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_Assembler')]" , $ns)
+                $production=$node.SelectNodes("CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_Refinery')] | CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_Assembler')]" , $ns)
                     IF( $production.count -gt $LARGEUPROD){
                       $total=$production.count - $LARGEUPROD
                       do{
-                          $production=$node.SelectNodes("CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_Refinery')] | MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_Assembler')]" , $ns)
+                          $production=$node.SelectNodes("CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_Refinery')] | CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_Assembler')]" , $ns)
                           $deletethis=$production | Get-Random
                           $deletethis.ParentNode.Removechild($deletethis)
                           $total=$total - 1
@@ -142,11 +142,11 @@
 
                 #turrets/tools section ==================
                 #turrets
-                $turretcount = $node.SelectNodes("CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_LargeGatlingTurret')] | MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_LargeMissileTurret')]", $ns)
+                $turretcount = $node.SelectNodes("CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_LargeGatlingTurret')] | CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_LargeMissileTurret')]", $ns)
                     IF( $turretcount.count -gt $LARGECTUR){
                       $total=$turretcount.count - $LARGECTUR
                       do{
-                          $turretcount = $node.SelectNodes("CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_LargeGatlingTurret')] | MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_LargeMissileTurret')]", $ns)
+                          $turretcount = $node.SelectNodes("CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_LargeGatlingTurret')] | CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_LargeMissileTurret')]", $ns)
                           $deletethis=$turretcount | Get-Random
                           $deletethis.ParentNode.Removechild($deletethis)
                           $total=$total - 1
@@ -155,11 +155,11 @@
                       while($total -gt 0)
                     }
                 #Direct Fire
-                $turretcount = $node.SelectNodes("CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_SmallMissileLauncher')] | MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_SmallMissileLauncherReload')]", $ns)
+                $turretcount = $node.SelectNodes("CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_SmallMissileLauncher')] | CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_SmallMissileLauncherReload')]", $ns)
                     IF( $turretcount.count -gt $LARGECDF){
                       $total=$turretcount.count - $LARGECDF
                       do{
-                          $turretcount = $node.SelectNodes("CubeBlocksMyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_SmallMissileLauncher')] | MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_SmallMissileLauncherReload')]", $ns)
+                          $turretcount = $node.SelectNodes("CubeBlocksMyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_SmallMissileLauncher')] | CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_SmallMissileLauncherReload')]", $ns)
                           $deletethis=$turretcount | Get-Random
                           $deletethis.ParentNode.Removechild($deletethis)
                           $total=$total - 1
@@ -171,11 +171,11 @@
 
                 #production section ==================
                   #production
-                $production=$node.SelectNodes("CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_Refinery')] | MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_Assembler')]" , $ns)
+                $production=$node.SelectNodes("CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_Refinery')] | CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_Assembler')]" , $ns)
                     IF( $production.count -gt $LARGECPROD){
                       $total=$production.count - $LARGECPROD
                       do{
-                          $production=$node.SelectNodes("CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_Refinery')] | MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_Assembler')]" , $ns)
+                          $production=$node.SelectNodes("CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_Refinery')] | CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_Assembler')]" , $ns)
                           $deletethis=$production | Get-Random
                           $deletethis.ParentNode.Removechild($deletethis)
                           $total=$total - 1
@@ -223,11 +223,11 @@
 
                 #production section ==================
                   #production
-                $production=$node.SelectNodes("CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_Refinery')] | MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_Assembler')]" , $ns)
+                $production=$node.SelectNodes("CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_Refinery')] | CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_Assembler')]" , $ns)
                     IF( $production.count -gt $LARGECIVPROD){
                       $total=$production.count - $LARGECIVPROD
                       do{
-                          $production=$node.SelectNodes("CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_Refinery')] | MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_Assembler')]" , $ns)
+                          $production=$node.SelectNodes("CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_Refinery')] | CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_Assembler')]" , $ns)
                           $deletethis=$production | Get-Random
                           $deletethis.ParentNode.Removechild($deletethis)
                           $total=$total - 1
@@ -275,11 +275,11 @@
 
                 #turrets/tools section ==================
                 #turrets
-                $turretcount = $node.SelectNodes("CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_LargeGatlingTurret')] | MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_LargeMissileTurret')]", $ns)
+                $turretcount = $node.SelectNodes("CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_LargeGatlingTurret')] | CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_LargeMissileTurret')]", $ns)
                     IF( $turretcount.count -gt $LARGEMTUR){
                       $total=$turretcount.count - $LARGEMTUR
                       do{
-                          $turretcount = $node.SelectNodes("CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_LargeGatlingTurret')] | MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_LargeMissileTurret')]", $ns)
+                          $turretcount = $node.SelectNodes("CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_LargeGatlingTurret')] | CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_LargeMissileTurret')]", $ns)
                           $deletethis=$turretcount | Get-Random
                           $deletethis.ParentNode.Removechild($deletethis)
                           $total=$total - 1
@@ -289,11 +289,11 @@
                     }
 
                 #Direct Fire
-                $turretcount = $node.SelectNodes("CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_SmallMissileLauncher')] | MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_SmallMissileLauncherReload')]", $ns)
+                $turretcount = $node.SelectNodes("CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_SmallMissileLauncher')] | CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_SmallMissileLauncherReload')]", $ns)
                     IF( $turretcount.count -gt $LARGEMDF){
                       $total=$turretcount.count - $LARGEMDF
                       do{
-                          $turretcount = $node.SelectNodes("CubeBlocksMyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_SmallMissileLauncher')] | MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_SmallMissileLauncherReload')]", $ns)
+                          $turretcount = $node.SelectNodes("CubeBlocksMyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_SmallMissileLauncher')] | CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_SmallMissileLauncherReload')]", $ns)
                           $deletethis=$turretcount | Get-Random
                           $deletethis.ParentNode.Removechild($deletethis)
                           $total=$total - 1
@@ -305,7 +305,7 @@
                     IF( $shiptoolscount.count -gt $LARGEMTOOL){
                       $total=$shiptoolscount.count - $LARGEMTOOL
                       do{
-                          $shiptoolscount = $node.SelectNodes("CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_ShipWelder')] | MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_ShipGrinder')] | MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_Drill')]", $ns)
+                          $shiptoolscount = $node.SelectNodes("CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_ShipWelder')] | CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_ShipGrinder')] | CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_Drill')]", $ns)
                           $deletethis=$shiptoolscount | Get-Random
                           $deletethis.ParentNode.Removechild($deletethis)
                           $total=$total - 1
@@ -317,11 +317,11 @@
 
                 #production section ==================
                   #production
-                $production=$node.SelectNodes("CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_Refinery')] | MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_Assembler')]" , $ns)
+                $production=$node.SelectNodes("CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_Refinery')] | CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_Assembler')]" , $ns)
                     IF( $production.count -gt $LARGEMPROD){
                       $total=$production.count - $LARGEMPROD
                       do{
-                          $production=$node.SelectNodes("CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_Refinery')] | MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_Assembler')]" , $ns)
+                          $production=$node.SelectNodes("CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_Refinery')] | CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_Assembler')]" , $ns)
                           $deletethis=$production | Get-Random
                           $deletethis.ParentNode.Removechild($deletethis)
                           $total=$total - 1
@@ -353,8 +353,8 @@
     $nodes = $myXML.SelectNodes("//SectorObjects/MyObjectBuilder_EntityBase[IsStatic='false' and GridSizeEnum='Small' and (@xsi:type='MyObjectBuilder_CubeGrid')]"  , $ns)
     
     ForEach($node in $nodes){
-        $turretcount = $node.SelectNodes("CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_LargeGatlingTurret')] | MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_LargeMissileTurret')] | MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_SmallMissileLauncher')] | MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_SmallMissileLauncherReload')]", $ns)
-        $shiptoolscount = $node.SelectNodes("CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_ShipWelder')] | MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_ShipGrinder')] | MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_Drill')]", $ns)
+        $turretcount = $node.SelectNodes("CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_LargeGatlingTurret')] | CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_LargeMissileTurret')] | CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_SmallMissileLauncher')] | CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_SmallMissileLauncherReload')]", $ns)
+        $shiptoolscount = $node.SelectNodes("CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_ShipWelder')] | CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_ShipGrinder')] | CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_Drill')]", $ns)
             #utility
             IF($turretcount.count -eq 0 -and $shiptoolscount.count -gt 0){
                 Write-Host -ForegroundColor Green "Utility Class Detected!!"
@@ -380,7 +380,7 @@
                     IF( $shiptoolscount.count -gt $SMALLUTOOL){
                       $total=$shiptoolscount.count - $SMALLUTOOL
                       do{
-                          $shiptoolscount = $node.SelectNodes("CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_ShipWelder')] | MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_ShipGrinder')] | MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_Drill')]", $ns)
+                          $shiptoolscount = $node.SelectNodes("CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_ShipWelder')] | CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_ShipGrinder')] | CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_Drill')]", $ns)
                           $deletethis=$shiptoolscount | Get-Random
                           $deletethis.ParentNode.Removechild($deletethis)
                           $total=$total - 1
@@ -412,11 +412,11 @@
 
                 #turrets/tools section ==================
                 #Direct Fire
-                $turretcount = $node.SelectNodes("CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_SmallMissileLauncher')] | MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_SmallMissileLauncherReload')]", $ns)
+                $turretcount = $node.SelectNodes("CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_SmallMissileLauncher')] | CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_SmallMissileLauncherReload')]", $ns)
                     IF($turretcount.count -gt $SMALLCDF){
                       $total=$turretcount.count - $SMALLCDF
                       do{
-                          $turretcount = $node.SelectNodes("CubeBlocksMyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_SmallMissileLauncher')] | MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_SmallMissileLauncherReload')]", $ns)
+                          $turretcount = $node.SelectNodes("CubeBlocksMyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_SmallMissileLauncher')] | CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_SmallMissileLauncherReload')]", $ns)
                           $deletethis=$turretcount | Get-Random
                           $deletethis.ParentNode.Removechild($deletethis)
                           $total=$total - 1
@@ -473,7 +473,7 @@
                     IF( $shiptoolscount.count -gt $SMALLMTOOL){
                       $total=$shiptoolscount.count - $SMALLUTOOL
                       do{
-                          $shiptoolscount = $node.SelectNodes("CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_ShipWelder')] | MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_ShipGrinder')] | MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_Drill')]", $ns)
+                          $shiptoolscount = $node.SelectNodes("CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_ShipWelder')] | CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_ShipGrinder')] | CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_Drill')]", $ns)
                           $deletethis=$shiptoolscount | Get-Random
                           $deletethis.ParentNode.Removechild($deletethis)
                           $total=$total - 1
@@ -483,11 +483,11 @@
                     }
 
                 #Direct Fire
-                $turretcount = $node.SelectNodes("CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_SmallMissileLauncher')] | MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_SmallMissileLauncherReload')]", $ns)
+                $turretcount = $node.SelectNodes("CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_SmallMissileLauncher')] | CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_SmallMissileLauncherReload')]", $ns)
                     IF($turretcount.count -gt $SMALLMDF){
                       $total=$turretcount.count - $SMALLMDF
                       do{
-                          $turretcount = $node.SelectNodes("CubeBlocksMyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_SmallMissileLauncher')] | MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_SmallMissileLauncherReload')]", $ns)
+                          $turretcount = $node.SelectNodes("CubeBlocksMyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_SmallMissileLauncher')] | CubeBlocks/MyObjectBuilder_CubeBlock[(@xsi:type='MyObjectBuilder_SmallMissileLauncherReload')]", $ns)
                           $deletethis=$turretcount | Get-Random
                           $deletethis.ParentNode.Removechild($deletethis)
                           $total=$total - 1
