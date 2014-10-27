@@ -40,6 +40,8 @@
     $filePath = 'your save path here\SANDBOX_0_0_0_.sbs'
 
     #only edit the above values!===============================================
+
+    Write-Host -ForegroundColor Green "SE-ShipClassPolicy loading please wait ... "
     
     [xml]$myXML = Get-Content $filePath
     $ns = New-Object System.Xml.XmlNamespaceManager($myXML.NameTable)
